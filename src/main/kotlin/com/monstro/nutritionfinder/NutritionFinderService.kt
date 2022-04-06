@@ -1,11 +1,11 @@
 package com.monstro.nutritionfinder
 
 class NutritionFinderService(
-    private val foodGateway: FoodGateway,
+    private val foodRepository: FoodRepository,
 ) {
 
     fun findFoodsBy(portion: Int, protein: Int): Set<Food> {
-        return foodGateway.getFoodsBy(
+        return foodRepository.getFoodsBy(
             NutritionProportion(
                 each = portion,
                 has = protein,
