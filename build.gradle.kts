@@ -24,10 +24,10 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("io.kotest:kotest-assertions-core:5.0.1")
-	testImplementation("io.kotest:kotest-framework-engine-jvm:5.0.1")
+	testImplementation("io.kotest:kotest-assertions-core:5.2.2")
+	testImplementation("io.kotest:kotest-framework-engine-jvm:5.2.2")
 	testImplementation("io.kotest:kotest-extensions-spring:4.4.3")
-	testImplementation("io.kotest:kotest-runner-junit5:5.0.1")
+	testImplementation("io.kotest:kotest-runner-junit5:5.2.2")
 }
 
 tasks.withType<KotlinCompile> {
