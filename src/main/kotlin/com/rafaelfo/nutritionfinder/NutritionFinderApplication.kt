@@ -1,4 +1,4 @@
-package com.monstro.nutritionfinder
+package com.rafaelfo.nutritionfinder
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -1,4 +1,4 @@
-package com.monstro.nutritionfinder
+package com.rafaelfo.nutritionfinder
 
 import io.kotest.core.spec.style.StringSpec
 

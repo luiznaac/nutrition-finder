@@ -1,4 +1,4 @@
-package com.monstro.nutritionfinder
+package com.rafaelfo.nutritionfinder
 
 class NutritionFinderService(
     private val foodRepository: FoodRepository,
