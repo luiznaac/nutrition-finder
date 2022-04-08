@@ -17,7 +17,8 @@ class FoodRepositoryTest: StringSpec({
         repository.save(setOf(patinhoMoido, bananaCaturra))
 
         val foundFoods = repository.getFoodsBy(
-            NutritionProportion(portion = 50, proteins = 10F)
+            NutritionProportion(portion = 50, proteins = 10F),
+            SearchType.AT_LEAST
         )
 
         foundFoods shouldBe setOf(patinhoMoido)
@@ -33,7 +34,8 @@ class FoodRepositoryTest: StringSpec({
         repository.save(setOf(patinhoMoido, bananaCaturra))
 
         val foundFoods = repository.getFoodsBy(
-            NutritionProportion(portion = 10, carbs = 2F)
+            NutritionProportion(portion = 10, carbs = 2F),
+            SearchType.AT_LEAST
         )
 
         foundFoods shouldBe setOf(bananaCaturra)
@@ -49,7 +51,8 @@ class FoodRepositoryTest: StringSpec({
         repository.save(setOf(patinhoMoido, bananaCaturra))
 
         val foundFoods = repository.getFoodsBy(
-            NutritionProportion(portion = 100, fats = 2F)
+            NutritionProportion(portion = 100, fats = 2F),
+            SearchType.AT_LEAST
         )
 
         foundFoods shouldBe setOf(patinhoMoido)
@@ -68,11 +71,33 @@ class FoodRepositoryTest: StringSpec({
         repository.save(setOf(patinhoMoido, bananaCaturra, pastaDeAmendoim))
 
         repository.getFoodsBy(
-            NutritionProportion(portion = 10, proteins = 2F, fats = 2F)
+            NutritionProportion(portion = 10, proteins = 2F, fats = 2F),
+            SearchType.AT_LEAST
         ) shouldBe setOf(pastaDeAmendoim)
 
         repository.getFoodsBy(
-            NutritionProportion(portion = 100, proteins = 2F, fats = 2F)
+            NutritionProportion(portion = 100, proteins = 2F, fats = 2F),
+            SearchType.AT_LEAST
         ) shouldBe setOf(patinhoMoido, pastaDeAmendoim)
+    }
+
+    "test get foods by nutrition portion - around - filtering protein" {
+        val patinhoMoido = Food(
+            name = "Patinho moído", portion = 100, calories = 141F, carbs = 2.8F, proteins = 21F, fats = 4.4F
+        )
+        val bananaCaturra = Food(
+            name = "Banana caturra", portion = 100, calories = 97F, carbs = 22.2F, proteins = 1.2F, fats = 0.4F
+        )
+        repository.save(setOf(patinhoMoido, bananaCaturra))
+
+        repository.getFoodsBy(
+            NutritionProportion(portion = 100, proteins = 1.3F),
+            SearchType.AROUND
+        ) shouldBe setOf(bananaCaturra)
+
+        repository.getFoodsBy(
+            NutritionProportion(portion = 100, proteins = 20F),
+            SearchType.AROUND
+        ) shouldBe setOf(patinhoMoido)
     }
 })
