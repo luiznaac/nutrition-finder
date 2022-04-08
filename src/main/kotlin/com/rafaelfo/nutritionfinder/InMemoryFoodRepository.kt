@@ -10,6 +10,19 @@ class InMemoryFoodRepository : FoodRepository {
 
     override fun getFoodsBy(proportion: NutritionProportion) =
         persistedFoods
-            .filter { it.proteins/it.portion >= proportion.protein/proportion.portion }
+            .filter { it.filterProteins(proportion) }
+            .filter { it.filterCarbs(proportion) }
             .toSet()
+}
+
+private fun Food.filterProteins(proportion: NutritionProportion): Boolean {
+    if(proportion.proteins == null) return true
+
+    return proteins/portion >= proportion.proteins/proportion.portion
+}
+
+private fun Food.filterCarbs(proportion: NutritionProportion): Boolean {
+    if(proportion.carbs == null) return true
+
+    return carbs/portion >= proportion.carbs/proportion.portion
 }

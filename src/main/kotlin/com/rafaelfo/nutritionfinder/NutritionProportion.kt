@@ -2,5 +2,6 @@ package com.rafaelfo.nutritionfinder
 
 data class NutritionProportion(
     val portion: Int,
-    val protein: Float,
+    val proteins: Float? = null,
+    val carbs: Float? = null,
 )
