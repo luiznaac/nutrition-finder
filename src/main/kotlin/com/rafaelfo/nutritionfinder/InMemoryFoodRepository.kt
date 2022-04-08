@@ -12,6 +12,7 @@ class InMemoryFoodRepository : FoodRepository {
         persistedFoods
             .filter { it.filterProteins(proportion) }
             .filter { it.filterCarbs(proportion) }
+            .filter { it.filterFats(proportion) }
             .toSet()
 }
 
@@ -25,4 +26,10 @@ private fun Food.filterCarbs(proportion: NutritionProportion): Boolean {
     if(proportion.carbs == null) return true
 
     return carbs/portion >= proportion.carbs/proportion.portion
+}
+
+private fun Food.filterFats(proportion: NutritionProportion): Boolean {
+    if(proportion.fats == null) return true
+
+    return fats/portion >= proportion.fats/proportion.portion
 }
