@@ -8,8 +8,8 @@ class InMemoryFoodRepository : FoodRepository {
         persistedFoods.addAll(foods)
     }
 
-    override fun getFoodsBy(proteinProportion: NutritionProportion) =
+    override fun getFoodsBy(proportion: NutritionProportion) =
         persistedFoods
-            .filter { it.protein/it.portion >= proteinProportion.has/proteinProportion.each }
+            .filter { it.proteins/it.portion >= proportion.protein/proportion.portion }
             .toSet()
 }

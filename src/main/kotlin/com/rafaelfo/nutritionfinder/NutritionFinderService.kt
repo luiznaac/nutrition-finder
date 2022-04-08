@@ -5,11 +5,6 @@ class NutritionFinderService(
 ) {
 
     fun findFoodsBy(portion: Int, protein: Int): Set<Food> {
-        return foodRepository.getFoodsBy(
-            NutritionProportion(
-                each = portion,
-                has = protein,
-            )
-        )
+        TODO()
     }
 }
